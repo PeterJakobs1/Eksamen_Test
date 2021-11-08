@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste over Sørsmål | Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>Liste med Spørsmål</h1>
+        <form action="/api/newQuestionsWithAnswer" method="POST">
+            <div id="questionList"></div>
+            <button>Send inn svar</button>
+        </form>
+
+        <form action="/api/newAnswer" method="POST">
+            <p><label>Legg til et svaralternativ: <input type="text" name="answerOption" placeholder="Nytt svar" /></label></p>
+            <p><button>Legg til</button></p>
+        </form>
+    </main>
+</body>
+<script>
+    fetch("/api/questions").then(function (res) {
+        return res.text()
+    }).then(function (text) {
+        document.getElementById("questionList").innerHTML = text;
+    });
+
+    fetch("/api/answerOptions").then(function(res) {
+        return res.text()
+    }).then(function(text) {
+        document.getElementById("category").innerHTML = text;
+    });
+</script>
+</html>

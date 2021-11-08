@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Legg til et spørsmål | Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+    <h1>Liste med Spørsmål og svar</h1>
+    <form>
+        <div id="questionWithAnswerList"></div>
+
+    </form>
+</main>
+</body>
+<script>
+    fetch("/api/newQuestionsWithAnswers").then(function(res) {
+        return res.text()
+    }).then(function(text) {
+        document.getElementById("questionWithAnswerList").innerHTML = text;
+    });
+</script>
+</html>
